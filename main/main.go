@@ -26,6 +26,29 @@ func (c *config) init() {
         c.AppIcon = "app.png"
     }
 }
+type SnakeNode struct{
+    x int
+    y int
+    color int
+    image string
+    next *SnakeNode
+}
+type Snake struct {
+    head *SnakeNode
+    tail *SnakeNode
+}
+
+func (this *Snake) AppendNodeToHeader(node *SnakeNode) {
+    this.head.next = node
+    this.head = node
+}
+func (this *Snake) DeleteTail(){
+    if nil != this.tail.next {
+        temp := this.tail
+        temp.next = nil
+        this.tail = this.tail.next
+    }
+}
 
 var (
     app *widgets.QMainWindow
